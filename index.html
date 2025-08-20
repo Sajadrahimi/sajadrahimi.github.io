@@ -1,7 +1,736 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Sajad Rahimi — Backend Engineer & Technical Lead</title>
+    <meta name="description"
+          content="Sajad Rahimi — backend engineer & technical lead. I build robust, scalable systems and see them through end-to-end."/>
+    <meta name="theme-color" content="#0b0f14"/>
+    <link rel="icon"
+          href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%230b0f14'/%3E%3Ctext x='50' y='60' font-size='54' text-anchor='middle' fill='white' font-family='system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif'%3ES%3C/text%3E%3C/svg%3E"/>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        #experience .exp-item ul {
+            margin: 8px 0 0;
+            padding-left: 18px;
+        }
+
+        #experience .exp-item li {
+            margin: 4px 0;
+        }
+
+        :root {
+            --bg: #0b0f14;
+            --bg-soft: #101720;
+            --card: #0f1621;
+            --text: #e6edf3;
+            --text-dim: #b7c2cc;
+            --accent: #7ee787; /* subtle green */
+            --muted: #2a3441;
+            --link: #9ae1ff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, .25);
+            color-scheme: dark;
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #f6f8fa;
+                --bg-soft: #ffffff;
+                --card: #ffffff;
+                --text: #0b1220;
+                --text-dim: #4b5563;
+                --accent: #047857;
+                --muted: #e5e7eb;
+                --link: #0369a1;
+                color-scheme: light;
+            }
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html, body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            background: radial-gradient(1200px 800px at 80% -20%, rgba(126, 231, 135, .08), transparent 70%), var(--bg);
+            color: var(--text);
+            letter-spacing: .2px;
+            padding-top: 70px;
+        }
+
+        a {
+            color: var(--link);
+            text-decoration: none
+        }
+
+        a:hover {
+            text-decoration: underline
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px
+        }
+
+        header {
+          position: fixed;
+          top: 0; left: 0; right: 0;
+          z-index: 1000;
+          backdrop-filter: saturate(120%) blur(8px);
+          background: color-mix(in hsl, var(--bg) 85%, transparent);
+          border-bottom: 1px solid var(--muted);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 0;
+            /*z-index: 999;*/
+            /*position: sticky;*/
+        }
+
+        .nav a {
+            padding: 8px 10px;
+            border-radius: 10px
+        }
+
+        .nav a:hover {
+            background: var(--muted)
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 28px;
+            align-items: center;
+            /*padding: 30px 0*/
+        }
+
+        .hero h1 {
+            margin: 0 0 8px;
+            font-size: clamp(28px, 5vw, 44px);
+            line-height: 1.15
+        }
+
+        .tagline {
+            color: var(--text-dim);
+        }
+
+        .cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--muted);
+            background: var(--card);
+            color: var(--text);
+            box-shadow: var(--shadow);
+            transition: transform .05s ease-in-out
+        }
+
+        .btn:hover {
+            transform: translateY(-1px)
+        }
+
+        .btn.primary {
+            background: linear-gradient(90deg, var(--accent), #22d3ee);
+            color: #052e16;
+            border: 0
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 16px
+        }
+
+        .card {
+            margin: 20px 0;
+            /*grid-column: span 12;*/
+            background: var(--card);
+            border: 1px solid var(--muted);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: var(--shadow)
+        }
+
+        .card h3 {
+            margin-top: 0
+        }
+
+        .stat .num {
+            display: block;
+            font-size: 22px;
+            font-weight: 700
+        }
+
+        .stat .lbl {
+            color: var(--text-dim)
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px
+        }
+
+        .chip {
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--muted);
+            background: var(--bg-soft);
+            font-size: 13px
+        }
+
+        .exp-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+            padding: 14px;
+            border: 1px solid var(--muted);
+            border-radius: 14px;
+            margin-bottom: 12px;
+            background: var(--bg-soft)
+        }
+
+        .exp-item h4 {
+            margin: 0 0 4px
+        }
+
+        .exp-item .meta {
+            color: var(--text-dim);
+            font-size: 14px
+        }
+
+        .exp-item ul {
+            padding-left: 18px;
+            margin: 8px 0 0
+        }
+
+        .repo h4 {
+            margin: 0 0 6px;
+            font-size: 16px
+        }
+
+        .repo .meta {
+            color: var(--text-dim);
+            font-size: 13px
+        }
+
+        footer {
+            margin: 40px 0 12px;
+            color: var(--text-dim);
+            text-align: center
+        }
+
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr
+            }
+
+            .two-col {
+                grid-template-columns: 1fr
+            }
+        }
+
+        /* === Education (professional list) === */
+        .education {
+            display: grid;
+            gap: 12px;
+        }
+
+        .edu-row {
+            display: grid;
+            /*grid-template-columns: 1.2fr 1fr auto;*/
+            gap: 12px;
+            align-items: baseline;
+            padding: 14px;
+            background: var(--bg-soft);
+            border: 1px solid var(--muted);
+            border-radius: 14px;
+        }
+
+        .edu-degree {
+            font-weight: 700;
+        }
+
+        .edu-inst {
+            color: var(--text-dim);
+        }
+
+        .edu-when {
+            color: var(--text-dim);
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        /* Mobile: stack rows cleanly */
+        @media (max-width: 700px) {
+            .edu-row {
+                grid-template-columns: 1fr;
+            }
+
+            .edu-when {
+                order: 3;
+            }
+        }
+
+        /* header layout tweaks */
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+            padding-left: 20px;
+        }
+
+        .brand .tagline {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .brand .dot {
+            color: var(--text-dim);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-toggle {
+            display: none;
+            border: 1px solid var(--muted);
+            background: var(--bg-soft);
+            color: var(--text);
+            border-radius: 10px;
+            padding: 8px;
+        }
+
+        @media (max-width: 760px) {
+            .nav-links {
+                width: 100%;
+                justify-content: space-evenly;
+            }
+
+            .brand .tagline {
+                display: none;
+            }
+
+            .brand .dot {
+                display: none;
+            }
+
+            .brand .name {
+                display: none;
+            }
+
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 16px;
+        }
+
+        .contact-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .contact-links {
+            display: grid;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .contact-links a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border: 1px solid var(--muted);
+            background: var(--bg-soft);
+            border-radius: 12px;
+            text-decoration: none;
+        }
+
+        .contact-links svg {
+            flex: 0 0 18px;
+        }
+
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <script>
+        (function () {
+            function setup() {
+                const btn = document.getElementsByClassName('copy-email');
+                if (!btn) return;
+
+                function showStatus(ok, btn) {
+                    const old = btn.innerHTML;
+                    btn.textContent = ok ? 'Copied!' : 'Copy failed';
+                    btn.setAttribute('aria-live', 'polite');
+                    setTimeout(() => {
+                        btn.innerHTML = old;
+                    }, 1200);
+                }
+
+                function legacyCopy(text) {
+                    const ta = document.createElement('textarea');
+                    ta.value = text;
+                    ta.setAttribute('readonly', '');
+                    ta.style.position = 'fixed';
+                    ta.style.top = '-9999px';
+                    ta.style.opacity = '0';
+                    document.body.appendChild(ta);
+
+                    const selection = document.getSelection();
+                    const prevRange = selection && selection.rangeCount ? selection.getRangeAt(0) : null;
+                    ta.focus();
+                    ta.select();
+                    ta.setSelectionRange(0, ta.value.length);
+
+                    let ok = false;
+                    try {
+                        ok = document.execCommand('copy');
+                    } catch (_) {
+                        ok = false;
+                    }
+
+                    document.body.removeChild(ta);
+                    if (selection && prevRange) {
+                        selection.removeAllRanges();
+                        selection.addRange(prevRange);
+                    }
+                    return ok;
+                }
+
+                async function copyEmail(email, btn) {
+                    if (window.isSecureContext && navigator.clipboard && navigator.clipboard.writeText) {
+                        try {
+                            await navigator.clipboard.writeText(email);
+                            showStatus(true, btn);
+                            return;
+                        } catch (_) {
+                        }
+                    }
+                    if (legacyCopy(email)) {
+                        showStatus(true, btn);
+                        return;
+                    }
+
+                    const manual = prompt('Copy this email address:', email);
+                    if (manual !== null) {
+                        showStatus(true, btn);
+                        return;
+                    }
+
+                    window.location.href = 'mailto:' + email;
+                }
+
+                Array.prototype.forEach.call(
+                    btn, function (b) {
+                        b.addEventListener('click', () => copyEmail(b.dataset.email, b));
+                    }
+                );
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', setup);
+            } else {
+                setup();
+            }
+        })();
+    </script>
+</head>
+
 <body>
-<h1>Just Testing</h1>
-<p></p>
-</body>
-</html>
+<header>
+    <div class="container nav">
+        <div class="brand">
+            <span class="name"><strong>Sajad Rahimi</strong></span>
+            <span aria-hidden="true" class="dot">•</span>
+            <span class="tagline">Software Engineer — Better at Code than Chess Endgames!</span>
+        </div>
+
+        <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
+            <!-- hamburger icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+
+        <nav id="primary-nav" class="nav-links" aria-label="Primary">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="hero" id="about">
+        <div>
+            <h1>Hi, I’m <span style="white-space:nowrap">Sajad Rahimi</span>.</h1>
+            <p class="tagline">My principles are simple: keep it robust, keep it clear, and keep it maintainable.
+                I love clean codes, small sharp services, and docs that help the next engineer (often future-me).
+                <br>
+                When I’m not debugging, I’m probably losing a friendly game of chess, or connecting weird dots on a
+                piece of paper (and call it my Ph.D. Thesis)!
+            </p>
+            <div class="cta" role="group" aria-label="Primary actions">
+                <a class="btn" target="_blank" rel="noopener noreferrer"
+                   href="https://github.com/Sajadrahimi">GitHub</a>
+                <a class="btn" target="_blank" rel="noopener noreferrer"
+                   href="https://stackoverflow.com/users/6906346/sajad">Stack Overflow</a>
+                <a class="btn" target="_blank" rel="noopener noreferrer"
+                   href="https://www.linkedin.com/in/sajadrahimi/">LinkedIn</a>
+                <a class="btn copy-email" href="#cta" data-email="rahimisajad@outlook.com">Email</a>
+                <a class="btn primary" href="assets/docs/SajadRahimi_CV.pdf" download>
+                    <span>⬇</span> <span>Download CV</span>
+                </a>
+            </div>
+        </div>
+        <div class="card">
+            <h3 style="margin-top:8px">Tech stack</h3>
+            <div class="chips">
+                <span class="chip">Python</span>
+                <span class="chip">SQL</span>
+                <span class="chip">Docker</span>
+                <span class="chip">Kubernetes</span>
+                <span class="chip">Go</span>
+                <span class="chip">Java</span>
+                <span class="chip">Kotlin</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="card" id="experience" aria-labelledby="exp-title">
+        <h3 id="exp-title">Experience</h3>
+
+        <!-- Ima -->
+        <article class="exp-item">
+            <div>
+                <h4>Technical Team Lead · <a href="https://ima.ir/" target="_blank" rel="noopener noreferrer">Ima</a>
+                </h4>
+                <div class="meta">Tehran, Iran · Oct 2023 – Jun 2025</div>
+                <ul>
+                    <li>Led end-to-end development for a digital entertainment platform across Python, Java, Rust &
+                        Go.
+                    </li>
+                    <li>Owned Kubernetes operations & zero-downtime releases; built CI/CD with GitLab CI + Helm.</li>
+                    <li>p95 &lt; 100 ms at peak; &lt;1h downtime over two years; no critical prod bugs.</li>
+                </ul>
+            </div>
+            <div class="meta">Streaming · High scale · Reliability</div>
+        </article>
+
+        <!-- Toman -->
+        <article class="exp-item">
+            <div>
+                <h4>Senior Software Engineer · <a href="https://tomanpay.net/" target="_blank"
+                                                  rel="noopener noreferrer">Toman</a></h4>
+                <div class="meta">Tehran, Iran · Dec 2022 – Nov 2023</div>
+                <ul>
+                    <li>Led a 5-dev Python backend team; delivered an Escrow service with &gt;80% test coverage in &lt;2
+                        weeks.
+                    </li>
+                    <li>Reduced CRM contact by ~90% via resilient flows & automation.</li>
+                    <li>Designed SSO across services with Keycloak.</li>
+                </ul>
+            </div>
+            <div class="meta">Fintech · Payments · SSO</div>
+        </article>
+
+        <!-- MCI -->
+        <article class="exp-item">
+            <div>
+                <h4>Technical Lead · <a href="https://boomino.ir" target="_blank"
+                                        rel="noopener noreferrer">Boomino</a></h4>
+                <div class="meta">Tehran, Iran · Sep 2021 – Mar 2023</div>
+                <ul>
+                    <li>Led 15-dev team (Python/Kotlin/JS); cut Dev↔Product comms time by ~80%.</li>
+                    <li>Ran red/blue-team exercise; fixed &gt;40 security vulns; 70% fewer bug reports.</li>
+                    <li>Mentored 6 interns/juniors to higher technical levels.</li>
+                </ul>
+            </div>
+            <div class="meta">Leadership · Security</div>
+        </article>
+
+        <!-- Boomino -->
+        <article class="exp-item">
+            <div>
+                <h4>Lead Backend Developer · <a href="https://boomino.ir" target="_blank"
+                                                rel="noopener noreferrer">Boomino</a></h4>
+                <div class="meta">Tehran, Iran · Apr 2020 – Sep 2021</div>
+                <ul>
+                    <li>Led 8-dev team; improved QA/user bug reports by 60–70%.</li>
+                    <li>Designed stack to fit product & team; built recommender with ~93% predictive accuracy.</li>
+                </ul>
+            </div>
+            <div class="meta">ML · Recommenders · VOD</div>
+        </article>
+
+        <!-- Hamrah Academy -->
+        <article class="exp-item">
+            <div>
+                <h4>Lead Backend Developer · <a href="https://hamrah.academy" target="_blank" rel="noopener noreferrer">Hamrah
+                    Academy</a></h4>
+                <div class="meta">Tehran, Iran · Oct 2020 – Apr 2021</div>
+                <ul>
+                    <li>Designed 12-service microservice architecture serving 3k+ concurrent users.</li>
+                    <li>Shipped VOD/live streaming for 2k live viewers; live chat handling 10k+ rps.</li>
+                    <li>Built CDN layer (MinIO/SeaweedFS/Nginx/FastAPI); −60% media load time.</li>
+                </ul>
+            </div>
+            <div class="meta">EdTech · Scale</div>
+        </article>
+
+        <!-- Innowin (Senior) -->
+        <article class="exp-item">
+            <div>
+                <h4>Senior Backend Developer · <a href="https://innowin.ir" target="_blank" rel="noopener noreferrer">Innowin</a>
+                </h4>
+                <div class="meta">Tehran, Iran · Dec 2019 – Jan 2021</div>
+                <ul>
+                    <li>Built behavior-based recommender (≥80% prediction accuracy) & follow-suggest system.</li>
+                    <li>Autoscaling with Docker; sustained ~200k req/s.</li>
+                </ul>
+            </div>
+            <div class="meta">Social · High throughput</div>
+        </article>
+
+        <!-- Innowin (Backend & DevOps) -->
+        <article class="exp-item">
+            <div>
+                <h4>Backend Developer & DevOps Engineer · Innowin</h4>
+                <div class="meta">Tehran, Iran · Mar 2019 – Dec 2019</div>
+                <ul>
+                    <li>Delivered 500+ APIs on a monolith; resolved 100+ legacy bugs (−70% future reports).</li>
+                </ul>
+            </div>
+            <div class="meta">Legacy modernization</div>
+        </article>
+
+        <!-- Earlier -->
+        <article class="exp-item">
+            <div>
+                <h4>Python Freelance Developer</h4>
+                <div class="meta">Tehran, Iran · Jan 2017 – Jun 2019</div>
+            </div>
+        </article>
+
+    </section>
+
+    <section class="card" id="education" aria-labelledby="education-title">
+        <h3 id="education-title">Education</h3>
+        <div class="education">
+            <div class="edu-row">
+                <div class="edu-degree">Ph.D., Computer Science</div>
+                <div class="edu-inst">University of Tehran — Tehran, Iran</div>
+                <div class="edu-when">Sep 2024 – Present</div>
+            </div>
+            <div class="edu-row">
+                <div class="edu-degree">M.Sc., Computer Science</div>
+                <div class="edu-inst">University of Tehran — Tehran, Iran</div>
+                <div class="edu-when">Sep 2020 – 2023</div>
+            </div>
+            <div class="edu-row">
+                <div class="edu-degree">B.Sc., Computer Science</div>
+                <div class="edu-inst">Amirkabir University of Technology — Tehran, Iran</div>
+                <div class="edu-when">2015 – 2020</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="card" id="contact" aria-labelledby="contact-title">
+        <h3 id="contact-title">Contact</h3>
+        <div class="contact-grid">
+            <div>
+                <p class="tagline">Want to discuss backend architecture, platform reliability, or a role? I’d love to
+                    chat.</p>
+            </div>
+
+            <ul class="contact-links" aria-label="Other ways to reach me">
+                <li>
+                    <a class="copy-email" data-email="rahimisajad@outlook.com" href="#contact">
+                        <!-- mail icon -->
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+                            <path d="M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zm0 0 8 6 8-6"
+                                  stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                        </svg>
+                        <span>rahimisajad@outlook.com</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/Sajadrahimi" target="_blank" rel="noopener noreferrer">
+                        <!-- github icon -->
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                            <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.2c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.1-.76.08-.74.08-.74 1.22.09 1.86 1.25 1.86 1.25 1.08 1.85 2.83 1.31 3.52 1 .11-.79.42-1.31.76-1.61-2.66-.3-5.46-1.33-5.46-5.92 0-1.31.47-2.39 1.24-3.23-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.64.24 2.86.12 3.16.77.84 1.24 1.92 1.24 3.23 0 4.6-2.8 5.61-5.47 5.91.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5Z"/>
+                        </svg>
+                        <span>github.com/Sajadrahimi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://stackoverflow.com/users/6906346/sajad" target="_blank" rel="noopener noreferrer">
+                        <!-- stack overflow icon -->
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+                            <path d="M5 22h12v-7M7 22v-7h8v7M8 15l8 1M9 12l7 3M11 9l6 5M14 6l4 7" stroke="currentColor"
+                                  stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span>stackoverflow.com/sajad</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/sajadrahimi/" target="_blank" rel="noopener noreferrer">
+                        <!-- linkedin icon -->
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                            <path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5ZM3 9h4v12H3zM10 9h4v1.9h.06C14.8 9.7 16.1 9 17.9 9 22 9 23 11.7 23 15.5V21h-4v-4.6c0-1.1 0-2.6-1.6-2.6s-1.9 1.2-1.9 2.5V21h-4z"/>
+                        </svg>
+                        <span>linkedin.com/sajadrahimi</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <footer>
+        <p>© 2025 Sajad Rahimi · Built Incompetently for GitHub Pages</p>
+    </footer>
+
+</main>
