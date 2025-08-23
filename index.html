@@ -84,12 +84,14 @@
         }
 
         header {
-          position: fixed;
-          top: 0; left: 0; right: 0;
-          z-index: 1000;
-          backdrop-filter: saturate(120%) blur(8px);
-          background: color-mix(in hsl, var(--bg) 85%, transparent);
-          border-bottom: 1px solid var(--muted);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: saturate(120%) blur(8px);
+            background: color-mix(in hsl, var(--bg) 85%, transparent);
+            border-bottom: 1px solid var(--muted);
         }
 
         .nav {
@@ -477,6 +479,20 @@
         })();
     </script>
 </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LLM9FB8YZ5"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-LLM9FB8YZ5');
+</script>
 
 <body>
 <header>
